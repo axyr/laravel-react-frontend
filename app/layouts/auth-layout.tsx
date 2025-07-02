@@ -1,7 +1,16 @@
+import AuthLayoutTemplate from '~/layouts/auth/auth-split-layout'
 import { useAuthStore } from '~/stores/auth-store'
-import { Navigate, Outlet, useLocation } from 'react-router'
+import { Navigate, useLocation } from 'react-router'
 
-export default function () {
+export default function AuthLayout({
+    title,
+    description,
+    children,
+}: {
+    title: string
+    description: string
+    children: React.ReactNode
+}) {
     const user = useAuthStore((s) => s.user)
     const location = useLocation()
 
@@ -10,8 +19,8 @@ export default function () {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <Outlet />
-        </div>
+        <AuthLayoutTemplate title={title} description={description}>
+            {children}
+        </AuthLayoutTemplate>
     )
 }

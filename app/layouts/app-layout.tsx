@@ -1,10 +1,15 @@
-import AppLayoutTemplate from '~/layouts/app/app-sidebar-layout';
+import AppLayoutTemplate from '~/layouts/app/app-sidebar-layout'
 import { useAuthStore } from '~/stores/auth-store'
-import { Navigate, Outlet, useLocation } from 'react-router'
-import { useBreadcrumbs } from "~/components/breadcrumb-context";
+import { Navigate, useLocation } from 'react-router'
+import type { ReactNode } from 'react'
+import type { BreadcrumbItem } from '~/types'
 
-export default function () {
-    const breadcrumbs = useBreadcrumbs();
+interface AppLayoutProps {
+    children: ReactNode
+    breadcrumbs?: BreadcrumbItem[]
+}
+
+export default function AppLayout({ children, breadcrumbs }: AppLayoutProps) {
     const user = useAuthStore((s) => s.user)
     const location = useLocation()
 
@@ -14,7 +19,7 @@ export default function () {
 
     return (
         <AppLayoutTemplate breadcrumbs={breadcrumbs}>
-            <Outlet />
+            {children}
         </AppLayoutTemplate>
     )
 }
