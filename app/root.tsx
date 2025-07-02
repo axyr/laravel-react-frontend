@@ -1,14 +1,13 @@
-import {
-  isRouteErrorResponse,
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import { useEffect } from "react"
+import { auth } from "~/routes/auth/auth"
+import { useAuthStore } from "~/stores/auth-store"
+import type { Route } from "./+types/root"
+import "./app.css"
 
-import type { Route } from "./+types/root";
-import "./app.css";
+export function HydrateFallback() {
+  return <div>Loading...</div>;
+}
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -24,6 +23,7 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="en">
       <head>
@@ -42,7 +42,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  const { initialized, setUser } = useAuthStore()
+
+  useEffect(() => {
+    if (initialized) return
+
+    auth
+        .getCsrfToken()
+        .then(() => auth.getUser())
+        .then(setUser)
+        .catch(() => setUser(null))
+  }, [initialized])
+
+  return <Outlet />
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
