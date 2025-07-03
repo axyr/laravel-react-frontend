@@ -13,6 +13,14 @@ module.exports = {
         ecmaVersion: "2020",
     },
     ignorePatterns: ["dist/*", "node_modules/*"],
-    plugins: ["@typescript-eslint"],
-    extends: ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
+    plugins: ["@typescript-eslint", "import"],
+    extends: [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended"
+    ],
+    rules: {
+        "import/no-unused-modules": "off",
+    },
 };

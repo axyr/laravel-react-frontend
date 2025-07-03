@@ -3,20 +3,18 @@ import { useForm } from 'react-hook-form'
 import type { Route } from './+types/login'
 import { handleValidationErrors } from '~/lib/handle-validation-errors'
 import { auth } from './auth'
-import { useAuthStore } from '~/stores/auth-store'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import InputError from '~/components/input-error'
-import TextLink from '~/components/text-link'
-import { Checkbox } from '~/components/ui/checkbox'
-import { href, useNavigate } from 'react-router'
 import AuthLayout from '~/layouts/auth-layout'
-import type { LoginFields } from '~/routes/auth/types'
+import type { ResetPasswordFields } from '~/routes/auth/types'
+import { useQueryParam } from '~/hooks/use-query-param'
+import { href, useNavigate, useParams } from 'react-router'
 import { LoaderCircle } from 'lucide-react'
 
-const title = 'Login to your account'
-const description = 'Enter your email below to login to your account.'
+const title = 'Reset password'
+const description = 'Please enter your new password below.'
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -25,34 +23,33 @@ export function meta({}: Route.MetaArgs) {
     ]
 }
 
-export default function Login() {
+export default function ForgotPassword() {
+    const { token } = useParams()
+    const email = useQueryParam('email')
+    const navigate = useNavigate()
+
     const {
         register,
         handleSubmit,
-        setValue,
         setError,
         formState: {errors, isSubmitting},
-    } = useForm<LoginFields>({
+    } = useForm<ResetPasswordFields>({
         defaultValues: {
-            remember: false,
+            token: token,
+            email: email ?? undefined,
         },
     })
 
-    const {setUser} = useAuthStore()
-    const navigate = useNavigate()
-
-    const onSubmit = handleSubmit((data: LoginFields) => {
-        auth.login(data)
-            .then(() => auth.getUser())
-            .then(setUser)
-            .then(() => navigate(href('/dashboard'), {replace: true}))
-            .catch((error) => handleValidationErrors<LoginFields>(error, setError))
+    const onSubmit = handleSubmit((data: ResetPasswordFields) => {
+        auth.resetPassword(data)
+            .then(() => navigate(href('/auth/login'), {replace: true}))
+            .catch((error) => handleValidationErrors<ResetPasswordFields>(error, setError))
     })
 
     return (
         <AuthLayout title={title} description={description}>
             <form onSubmit={onSubmit}>
-                <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6">
                     <div className="grid gap-3">
                         <Label htmlFor="email">Email</Label>
                         <Input
@@ -67,50 +64,34 @@ export default function Login() {
                         <InputError message={errors.email?.message} />
                     </div>
                     <div className="grid gap-3">
-                        <div className="flex items-center">
-                            <Label htmlFor="password">Password</Label>
-                            <TextLink
-                                to="/auth/forgot-password"
-                                className="ml-auto inline-block text-sm"
-                                tabIndex={5}
-                            >
-                                Forgot password?
-                            </TextLink>
-                        </div>
+                        <Label htmlFor="password">Password</Label>
                         <Input
                             id="password"
                             type="password"
-                            autoComplete="current-password"
+                            placeholder="Password"
                             tabIndex={2}
                             {...register('password')}
                         />
                         <InputError message={errors.password?.message} />
                     </div>
-                    <div className="flex items-center space-x-3">
-                        <Checkbox
-                            id="remember"
-                            {...register('remember')}
-                            onCheckedChange={checked => setValue('remember', checked === true)}
+                    <div className="grid gap-3">
+                        <Label htmlFor="password_confirmation">Confirm password</Label>
+                        <Input
+                            id="password_confirmation"
+                            type="password"
+                            placeholder="Confirm password"
                             tabIndex={3}
+                            {...register('password_confirmation')}
                         />
-                        <Label htmlFor="remember">Remember me</Label>
+                        <InputError message={errors.password_confirmation?.message} />
                     </div>
+
                     <div className="flex flex-col gap-3">
                         <Button type="submit" className="w-full flex items-center justify-center gap-2" disabled={isSubmitting}>
                             {isSubmitting && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                            <span>Login</span>
+                            <span>Reset password</span>
                         </Button>
                     </div>
-                </div>
-                <div className="mt-4 text-center text-sm">
-                    Don&apos;t have an account?{' '}
-                    <TextLink
-                        to="/auth/register"
-                        className="underline decoration-neutral"
-                        tabIndex={5}
-                    >
-                        Sign up
-                    </TextLink>
                 </div>
             </form>
         </AuthLayout>
