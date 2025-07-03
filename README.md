@@ -28,3 +28,29 @@ This frontend application expects the following Laravel endpoints
 - POST ~/api/register
 - POST ~/api/forgot-password
 - POST ~/api/reset-password
+
+## Setting up Laravel
+
+### Set up the frontend url
+
+This part asumes the base url of this frontend application to be:
+
+`http://localhost:5173`
+
+Add the base url of this frontend application to your `~/config/app.php`:
+```php
+'frontend_url' => env('APP_FRONTEND_URL', 'http://localhost:5173'),
+```
+
+Set the following environment variables:
+
+```dotenv
+APP_FRONTEND_URL=http://localhost:5173
+SANCTUM_STATEFUL_DOMAINS=localhost
+SESSION_DOMAIN=.localhost
+SESSION_SECURE_COOKIE=false
+SESSION_SAME_SITE=lax
+SESSION_DRIVER=cookie
+```
+
+> In production you can leave SESSION_SECURE_COOKIE to be true!
