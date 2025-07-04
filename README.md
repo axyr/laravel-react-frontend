@@ -3,6 +3,8 @@
 This repository contains a standalone React / Shadecn frontend for Laravel.
 It works without Inertia and is decoupled from its backend.
 
+![Screenshot](./docs/screenshot.png)
+
 ## Required endpoints.
 
 By default the following backend base url is set:
