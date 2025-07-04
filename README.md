@@ -1,56 +1,39 @@
 # Laravel React standalone frontend.
 
-> WORK IN PROGRESS
-
-As this is in heavy development, a lot is expected to change!
-
 This repository contains a standalone React / Shadecn frontend for Laravel.
-It works without Inertia and it decoupled from its backend.
-
-It is tailored to work with the Laravel Tractor CRUD generator, which alows you to generate testable CRUD application in no time.
-[TODO]
-
-## Laravel requirements
-The packages should use with any backend, but it tested with Laravel and the following packages.
-The authentication is cookie based.
-
-- Sanctum
-- Fortify
+It works without Inertia and is decoupled from its backend.
 
 ## Required endpoints.
 
-This frontend application expects the following Laravel endpoints
+This frontend application expects the following endpoints:
 
-- GET ~/api/cookie
-- GET ~/api/user
-- POST ~/api/login
-- POST ~/api/logout
-- POST ~/api/register
-- POST ~/api/forgot-password
-- POST ~/api/reset-password
+```javascript
+export const END_POINTS = {
+    AUTH_CSRF: 'csrf-cookie',
+    
+    AUTH_LOGIN: 'login',
+    AUTH_LOGOUT : 'logout',
+    AUTH_REGISTER: 'register',
+    AUTH_FORGOT_PASSWORD: 'forgot-password',
+    AUTH_RESET_PASSWORD: 'reset-password',
+    AUTH_GET_USER: 'user',
 
-## Setting up Laravel
-
-### Set up the frontend url
-
-This part asumes the base url of this frontend application to be:
-
-`http://localhost:5173`
-
-Add the base url of this frontend application to your `~/config/app.php`:
-```php
-'frontend_url' => env('APP_FRONTEND_URL', 'http://localhost:5173'),
+    SETTINGS_UPDATE_PROFILE_INFORMATION: 'user/profile-information',
+    SETTINGS_UPDATE_PASSWORD: 'user/password',
+    SETTINGS_DELETE_USER: 'user',
+}
 ```
 
-Set the following environment variables:
+These endpoints will be installed by default with the Laravel React Starter Kit.
 
-```dotenv
-APP_FRONTEND_URL=http://localhost:5173
-SANCTUM_STATEFUL_DOMAINS=localhost
-SESSION_DOMAIN=.localhost
-SESSION_SECURE_COOKIE=false
-SESSION_SAME_SITE=lax
-SESSION_DRIVER=cookie
+https://github.com/axyr/laravel-react-starter-kit
+
+## Installation with Laravel
+
+To use this frontend with a fresh Laravel application use the `laravel new` command:
+
+```shell
+laravel new --using=axyr/laravel-react-starter-kit my-project
 ```
 
-> In production you can leave SESSION_SECURE_COOKIE to be true!
+This will install and configure Laravel Fortify and Laravel Sanctum

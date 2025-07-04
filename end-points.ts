@@ -1,5 +1,6 @@
 export const END_POINTS = {
     AUTH_CSRF: 'csrf-cookie',
+
     AUTH_LOGIN: 'login',
     AUTH_LOGOUT : 'logout',
     AUTH_REGISTER: 'register',
