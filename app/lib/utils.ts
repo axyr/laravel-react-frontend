@@ -11,5 +11,5 @@ export function unwrapData<T>(promise: Promise<AxiosResponse<{ data: T }>>): Pro
 }
 
 export function unwrapRoot<T>(promise: Promise<AxiosResponse<T>>): Promise<T> {
-  return promise.then((res) => res.data);
+  return promise.then((res) => res.data)
 }

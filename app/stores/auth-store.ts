@@ -11,6 +11,6 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set) => ({
     user: null,
     initialized: false,
-    setUser: (user) => set({ user }),
+    setUser: (user) => set({ user, initialized: true }),
     setInitialized: (initialized) => set({ initialized }),
 }))

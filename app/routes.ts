@@ -1,16 +1,20 @@
-import { type RouteConfig, index, route, prefix } from '@react-router/dev/routes'
+import { type RouteConfig, index, route, layout } from '@react-router/dev/routes'
 
 export default [
     index('routes/home.tsx'),
 
-    ...prefix('auth', [
-        route('login', 'routes/auth/login.tsx'),
-        route('register', 'routes/auth/register.tsx'),
-        route('forgot-password', 'routes/auth/forgot-password.tsx'),
-        route('reset-password/:token', 'routes/auth/reset-password.tsx'),
+    layout('layouts/guest-layout.tsx', [
+        route('auth/login', 'routes/auth/login.tsx'),
+        route('auth/register', 'routes/auth/register.tsx'),
+        route('auth/forgot-password', 'routes/auth/forgot-password.tsx'),
+        route('auth/reset-password/:token', 'routes/auth/reset-password.tsx'),
     ]),
-    //http://localhost:5173/auth/reset-password/693be312b3c36569ac53ac1814fad1411da1ed679d601c99295d049ac8f75421?email=info@axyrmedia.nl
-    route('dashboard', 'routes/dashboard.tsx'),
-    // route('settings', 'routes/settings.tsx'),
+
+    layout('layouts/authenticated-layout.tsx', [
+        route('dashboard', 'routes/dashboard.tsx'),
+        route('settings/profile', 'routes/settings/profile.tsx'),
+        route('settings/password', 'routes/settings/password.tsx'),
+        route('settings/appearance', 'routes/settings/appearance.tsx'),
+    ])
 
 ] satisfies RouteConfig

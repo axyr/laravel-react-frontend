@@ -1,3 +1,4 @@
+import AuthLayout from '~/layouts/auth-layout'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import type { Route } from './+types/login'
@@ -11,7 +12,6 @@ import InputError from '~/components/input-error'
 import TextLink from '~/components/text-link'
 import { Checkbox } from '~/components/ui/checkbox'
 import { href, useLocation, useNavigate } from 'react-router'
-import AuthLayout from '~/layouts/auth-layout'
 import type { LoginFields } from '~/routes/auth/types'
 import { LoaderCircle } from 'lucide-react'
 

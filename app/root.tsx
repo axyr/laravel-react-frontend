@@ -4,6 +4,7 @@ import { auth } from "~/routes/auth/auth"
 import { useAuthStore } from "~/stores/auth-store"
 import type { Route } from "./+types/root"
 import "./app.css"
+import { initializeTheme } from '~/hooks/use-appearance'
 
 export function HydrateFallback() {
   return <div>Loading...</div>;
@@ -23,13 +24,12 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
+          {/*<Meta />*/}
         <Links />
       </head>
       <body>
@@ -42,7 +42,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const { initialized, setUser } = useAuthStore()
+  const { initialized, setUser , setInitialized} = useAuthStore()
+
+  initializeTheme();
 
   useEffect(() => {
     if (initialized) return
@@ -52,6 +54,7 @@ export default function App() {
         .then(() => auth.getUser())
         .then(setUser)
         .catch(() => setUser(null))
+        .finally(() => setInitialized(true))
   }, [initialized])
 
   return <Outlet />

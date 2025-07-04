@@ -8,9 +8,10 @@ export function useLogout() {
     const navigate = useNavigate()
 
     return useCallback(() => {
-        auth.logout().then(() => {
-            setUser(null)
-            navigate('/auth/login', {replace: true})
-        })
+        auth.logout()
+            .then(() => {
+                setUser(null)
+                navigate('/auth/login', {replace: true})
+            })
     }, [])
 }

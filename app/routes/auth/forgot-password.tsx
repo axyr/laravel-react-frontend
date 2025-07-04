@@ -1,3 +1,4 @@
+import AuthLayout from '~/layouts/auth-layout'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import type { Route } from './+types/login'
@@ -8,7 +9,6 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import InputError from '~/components/input-error'
 import TextLink from '~/components/text-link'
-import AuthLayout from '~/layouts/auth-layout'
 import type { ForgotPasswordFields } from '~/routes/auth/types'
 import { LoaderCircle } from 'lucide-react'
 
