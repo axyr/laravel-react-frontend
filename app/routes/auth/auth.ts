@@ -1,6 +1,6 @@
 import { api } from '~/axios/axios';
 import { unwrapData, unwrapRoot } from '~/lib/utils'
-
+import {END_POINTS} from '../../../end-points'
 import type { User } from '~/types';
 import type {
     ForgotPasswordFields,
@@ -11,24 +11,24 @@ import type {
     MessageResponse
 } from './types';
 
-const getCsrfToken = () => api.get('cookie');
+const getCsrfToken = () => api.get(END_POINTS.AUTH_CSRF);
 
-const logout = () => api.post('logout');
+const logout = () => api.post(END_POINTS.AUTH_LOGOUT);
 
 const getUser = (): Promise<User> =>
-    unwrapData<User>(api.get<{ data: User }>('user'));
+    unwrapData<User>(api.get<{ data: User }>(END_POINTS.AUTH_GET_USER));
 
 const login = (payload: LoginFields): Promise<LoginResponse> =>
-    unwrapData<LoginResponse>(api.post<{ data: LoginResponse }>('login', payload))
+    unwrapData<LoginResponse>(api.post<{ data: LoginResponse }>(END_POINTS.AUTH_LOGIN, payload))
 
 const register = (payload: RegisterFields): Promise<LoginResponse> =>
-    unwrapData<LoginResponse>(api.post<{ data: LoginResponse }>('register', payload))
+    unwrapData<LoginResponse>(api.post<{ data: LoginResponse }>(END_POINTS.AUTH_REGISTER, payload))
 
 const sendPasswordResetLink = (payload: ForgotPasswordFields): Promise<MessageResponse> =>
-    unwrapRoot<MessageResponse>(api.post<MessageResponse>('forgot-password', payload))
+    unwrapRoot<MessageResponse>(api.post<MessageResponse>(END_POINTS.AUTH_FORGOT_PASSWORD, payload))
 
 const resetPassword = (payload: ResetPasswordFields): Promise<MessageResponse> =>
-    unwrapRoot<MessageResponse>(api.post<MessageResponse>('reset-password', payload))
+    unwrapRoot<MessageResponse>(api.post<MessageResponse>(END_POINTS.AUTH_RESET_PASSWORD, payload))
 
 export const auth = {
     getCsrfToken,
