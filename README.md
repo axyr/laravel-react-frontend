@@ -5,9 +5,18 @@ It works without Inertia and is decoupled from its backend.
 
 ## Required endpoints.
 
+By default the following backend base url is set:
+
+```dotenv
+VITE_API_BASE_URL=http://localhost:8000/api
+```
+
 This frontend application expects the following endpoints:
 
 ```javascript
+
+// ~/end-points.ts
+
 export const END_POINTS = {
     AUTH_CSRF: 'csrf-cookie',
     
