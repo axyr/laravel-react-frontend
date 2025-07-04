@@ -27,12 +27,12 @@ const mainNavItems: NavItem[] = [
 const rightNavItems: NavItem[] = [
     {
         title: 'Repository',
-        to: 'https://github.com/laravel/react-starter-kit',
+        to: 'https://github.com/axyr/laravel-tractor-react',
         icon: Folder,
     },
     {
-        title: 'Documentation',
-        to: 'https://laravel.com/docs/starter-kits#react',
+        title: 'Laravel Tractor',
+        to: 'https://github.com/axyr/laravel-tractor',
         icon: BookOpen,
     },
 ];

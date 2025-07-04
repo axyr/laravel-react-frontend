@@ -19,7 +19,6 @@ export default function AuthSplitLayout({ children, title, description }: PropsW
                     <AppLogoIcon className="mr-2 size-8 fill-current text-white" />
                     {name}
                 </Link>
-
             </div>
             <div className="w-full lg:p-8">
                 <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">

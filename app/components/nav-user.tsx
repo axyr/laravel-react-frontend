@@ -6,15 +6,9 @@ import {
 } from "lucide-react"
 
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "~/components/ui/avatar"
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
@@ -27,12 +21,14 @@ import {
 
 import React from "react"
 import { useAuthStore } from "~/stores/auth-store"
-import { useInitials } from "~/hooks/use-initials";
 import { useLogout } from '~/hooks/use-auth'
+import { UserInfo } from '~/components/user-info'
+import { UserMenuContent } from '~/components/user-menu-content'
+import { useIsMobile } from '~/hooks/use-mobile'
 
 export function NavUser() {
-  const { isMobile } = useSidebar()
-  const getInitials = useInitials()
+  const { state } = useSidebar()
+  const isMobile = useIsMobile()
   const logout = useLogout()
   const user = useAuthStore((s) => s.user)
 
@@ -52,45 +48,17 @@ export function NavUser() {
                   size="lg"
                   className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
               >
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">{getInitials(user.name)}</AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
-                </div>
+                <UserInfo user={user} />
                 <ChevronsUpDown className="ml-auto size-4" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent
                 className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-                side={isMobile ? "bottom" : "right"}
+                side={isMobile ? 'bottom' : state === 'collapsed' ? 'left' : 'bottom'}
                 align="end"
                 sideOffset={4}
             >
-              <DropdownMenuLabel className="p-0 font-normal">
-                <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                  <Avatar className="h-8 w-8 rounded-lg">
-                    <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback className="rounded-lg">{getInitials(user.name)}</AvatarFallback>
-                  </Avatar>
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-medium">{user.name}</span>
-                    <span className="truncate text-xs">{user.email}</span>
-                  </div>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <button
-                    onClick={handleLogout}
-                    className="w-full text-left flex items-center gap-2"
-                >
-                  <LogOut className="mr-2" />
-                  Log out
-                </button>
-              </DropdownMenuItem>
+              <UserMenuContent user={user} />
             </DropdownMenuContent>
           </DropdownMenu>
         </SidebarMenuItem>

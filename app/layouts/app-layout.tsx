@@ -1,4 +1,4 @@
-import AppLayoutTemplate from '~/layouts/app/app-sidebar-layout'
+import AppLayoutTemplate from '~/layouts/app/app-header-layout'
 import { useAuthStore } from '~/stores/auth-store'
 import { Navigate, useLocation } from 'react-router'
 import type { ReactNode } from 'react'
