@@ -17,7 +17,7 @@ This frontend application expects the following endpoints:
 
 ```javascript
 
-// ~/end-points.ts
+// ~/config/end-points.ts
 
 export const END_POINTS = {
     AUTH_CSRF: 'csrf-cookie',

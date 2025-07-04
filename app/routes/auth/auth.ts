@@ -1,6 +1,6 @@
 import { api } from '~/axios/axios';
 import { unwrapData, unwrapRoot } from '~/lib/utils'
-import {END_POINTS} from '../../../end-points'
+import { END_POINTS } from '~/config/end-points'
 import type { User } from '~/types';
 import type {
     ForgotPasswordFields,
