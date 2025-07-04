@@ -10,7 +10,7 @@ import { Label } from '~/components/ui/label'
 import InputError from '~/components/input-error'
 import TextLink from '~/components/text-link'
 import { Checkbox } from '~/components/ui/checkbox'
-import { href, useNavigate } from 'react-router'
+import { href, useLocation, useNavigate } from 'react-router'
 import AuthLayout from '~/layouts/auth-layout'
 import type { LoginFields } from '~/routes/auth/types'
 import { LoaderCircle } from 'lucide-react'
@@ -40,7 +40,8 @@ export default function Login() {
 
     const {setUser} = useAuthStore()
     const navigate = useNavigate()
-
+    const location = useLocation()
+    const status = location.state?.status as string | undefined
     const onSubmit = handleSubmit((data: LoginFields) => {
         auth.login(data)
             .then(() => auth.getUser())
@@ -51,6 +52,7 @@ export default function Login() {
 
     return (
         <AuthLayout title={title} description={description}>
+            {status && <div className="mb-4 text-center text-sm font-medium text-green-600">{status}</div>}
             <form onSubmit={onSubmit}>
                 <div className="flex flex-col gap-6">
                     <div className="grid gap-3">
@@ -96,7 +98,7 @@ export default function Login() {
                         <Label htmlFor="remember">Remember me</Label>
                     </div>
                     <div className="flex flex-col gap-3">
-                        <Button type="submit" className="w-full flex items-center justify-center gap-2" disabled={isSubmitting}>
+                        <Button type="submit" className="w-full flex items-center justify-center gap-2" tabIndex={4}  disabled={isSubmitting}>
                             {isSubmitting && <LoaderCircle className="h-4 w-4 animate-spin" />}
                             <span>Login</span>
                         </Button>
@@ -106,8 +108,8 @@ export default function Login() {
                     Don&apos;t have an account?{' '}
                     <TextLink
                         to="/auth/register"
-                        className="underline decoration-neutral"
-                        tabIndex={5}
+                        className="underline decoration -neutral"
+                        tabIndex={6}
                     >
                         Sign up
                     </TextLink>

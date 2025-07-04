@@ -12,6 +12,7 @@ import type { ResetPasswordFields } from '~/routes/auth/types'
 import { useQueryParam } from '~/hooks/use-query-param'
 import { href, useNavigate, useParams } from 'react-router'
 import { LoaderCircle } from 'lucide-react'
+import TextLink from '~/components/text-link'
 
 const title = 'Reset password'
 const description = 'Please enter your new password below.'
@@ -23,8 +24,8 @@ export function meta({}: Route.MetaArgs) {
     ]
 }
 
-export default function ForgotPassword() {
-    const { token } = useParams()
+export default function ResetPassword() {
+    const {token} = useParams()
     const email = useQueryParam('email')
     const navigate = useNavigate()
 
@@ -42,14 +43,14 @@ export default function ForgotPassword() {
 
     const onSubmit = handleSubmit((data: ResetPasswordFields) => {
         auth.resetPassword(data)
-            .then(() => navigate(href('/auth/login'), {replace: true}))
+            .then((response) => navigate(href('/auth/login'), {replace: true, state: {status: response.message}}))
             .catch((error) => handleValidationErrors<ResetPasswordFields>(error, setError))
     })
 
     return (
         <AuthLayout title={title} description={description}>
             <form onSubmit={onSubmit}>
-            <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6">
                     <div className="grid gap-3">
                         <Label htmlFor="email">Email</Label>
                         <Input
@@ -69,6 +70,7 @@ export default function ForgotPassword() {
                             id="password"
                             type="password"
                             placeholder="Password"
+                            autoComplete="new-password"
                             tabIndex={2}
                             {...register('password')}
                         />
@@ -80,6 +82,7 @@ export default function ForgotPassword() {
                             id="password_confirmation"
                             type="password"
                             placeholder="Confirm password"
+                            autoComplete="new-password"
                             tabIndex={3}
                             {...register('password_confirmation')}
                         />
@@ -87,11 +90,21 @@ export default function ForgotPassword() {
                     </div>
 
                     <div className="flex flex-col gap-3">
-                        <Button type="submit" className="w-full flex items-center justify-center gap-2" disabled={isSubmitting}>
+                        <Button type="submit" className="w-full flex items-center justify-center gap-2" tabIndex={4} disabled={isSubmitting}>
                             {isSubmitting && <LoaderCircle className="h-4 w-4 animate-spin" />}
                             <span>Reset password</span>
                         </Button>
                     </div>
+                </div>
+                <div className="mt-4 text-center text-sm">
+                    Or, {' '}
+                    <TextLink
+                        to="/auth/forgot-password"
+                        className="underline decoration-neutral"
+                        tabIndex={5}
+                    >
+                        Request new password reset link
+                    </TextLink>
                 </div>
             </form>
         </AuthLayout>

@@ -6,7 +6,7 @@ export interface LoginFields {
 
 export interface RegisterFields {
     name: string
-    email: string | null
+    email: string
     password: string
     password_confirmation: string
 }
@@ -24,4 +24,8 @@ export interface ResetPasswordFields {
 
 export interface LoginResponse {
     two_factor: boolean
+}
+
+export interface MessageResponse {
+    message: string
 }

@@ -1,46 +1,41 @@
 import { api } from '~/axios/axios';
-import type { User } from '~/types'
-import type { ForgotPasswordFields, LoginFields, LoginResponse, RegisterFields, ResetPasswordFields } from './types'
+import { unwrapData, unwrapRoot } from '~/lib/utils'
 
-async function getCsrfToken(): Promise<void> {
-    await api.get('cookie')
-}
+import type { User } from '~/types';
+import type {
+    ForgotPasswordFields,
+    LoginFields,
+    LoginResponse,
+    RegisterFields,
+    ResetPasswordFields,
+    MessageResponse
+} from './types';
 
-async function login(payload: LoginFields): Promise<LoginResponse> {
-    const { data } = await api.post<{ data: LoginResponse }>('login', payload)
-    return data.data
-}
+const getCsrfToken = () => api.get('cookie');
 
-async function register(payload: RegisterFields): Promise<LoginResponse> {
-    const { data } = await api.post<{ data: LoginResponse }>('register', payload)
-    return data.data
-}
+const logout = () => api.post('logout');
 
-async function sendPasswordResetLink(payload: ForgotPasswordFields): Promise<any> {
-    const { data } = await api.post<{ data: any }>('forgot-password', payload)
-    return data.data
-}
+const getUser = (): Promise<User> =>
+    unwrapData<User>(api.get<{ data: User }>('user'));
 
-async function resetPassword(payload: ResetPasswordFields): Promise<any> {
-    const { data } = await api.post<{ data: any }>('reset-password', payload)
-    return data.data
-}
+const login = (payload: LoginFields): Promise<LoginResponse> =>
+    unwrapData<LoginResponse>(api.post<{ data: LoginResponse }>('login', payload))
 
-async function logout(): Promise<void> {
-    await api.post('logout')
-}
+const register = (payload: RegisterFields): Promise<LoginResponse> =>
+    unwrapData<LoginResponse>(api.post<{ data: LoginResponse }>('register', payload))
 
-async function getUser(): Promise<User> {
-    const { data } = await api.get<{ data: User }>('user')
-    return data.data
-}
+const sendPasswordResetLink = (payload: ForgotPasswordFields): Promise<MessageResponse> =>
+    unwrapRoot<MessageResponse>(api.post<MessageResponse>('forgot-password', payload))
+
+const resetPassword = (payload: ResetPasswordFields): Promise<MessageResponse> =>
+    unwrapRoot<MessageResponse>(api.post<MessageResponse>('reset-password', payload))
 
 export const auth = {
+    getCsrfToken,
     login,
+    register,
+    sendPasswordResetLink,
+    resetPassword,
     logout,
     getUser,
-    register,
-    getCsrfToken,
-    resetPassword,
-    sendPasswordResetLink,
-}
+};
