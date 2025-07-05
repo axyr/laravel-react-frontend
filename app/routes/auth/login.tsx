@@ -14,15 +14,13 @@ import { Checkbox } from '~/components/ui/checkbox'
 import { href, useLocation, useNavigate } from 'react-router'
 import type { LoginFields } from '~/routes/auth/types'
 import { LoaderCircle } from 'lucide-react'
+import { setMeta } from '~/lib/meta'
 
 const title = 'Login to your account'
 const description = 'Enter your email below to login to your account.'
 
 export function meta({}: Route.MetaArgs) {
-    return [
-        {title},
-        {name: 'description', content: description},
-    ]
+    return setMeta(title, description)
 }
 
 export default function Login() {

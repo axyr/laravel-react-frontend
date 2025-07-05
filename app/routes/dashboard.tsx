@@ -1,8 +1,8 @@
 import type { BreadcrumbItem } from '~/types'
 import AppLayout from '~/layouts/app-layout'
 import type { Route } from '../../.react-router/types/app/routes/+types/home'
-import { useSharedStore } from '~/stores/shared-store'
 import { PlaceholderPattern } from '~/components/ui/placeholder-pattern'
+import { setMeta } from '~/lib/meta'
 
 const title = 'Dashboard';
 
@@ -14,10 +14,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ]
 
 export function meta({}: Route.MetaArgs) {
-    const name = useSharedStore((s) => s.name)
-    return [
-        {title: `${title} - ${name}`},
-    ]
+    return setMeta(title)
 }
 
 export default function Dashboard() {

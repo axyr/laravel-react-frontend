@@ -15,10 +15,10 @@ import { Link } from 'react-router'
 import type { ProfileFields } from '~/routes/settings/types'
 import { handleValidationErrors } from '~/lib/handle-validation-errors'
 import { settings } from '~/routes/settings/settings'
-import { useSharedStore } from '~/stores/shared-store'
 import { useRecentlySuccessful } from '~/hooks/use-recently-successful'
 import { LoaderCircle } from 'lucide-react'
 import DeleteUser from '~/components/delete-user'
+import { setMeta } from '~/lib/meta'
 
 const title = 'Profile settings';
 
@@ -30,10 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ]
 
 export function meta({}: Route.MetaArgs) {
-    const name = useSharedStore((s) => s.name)
-    return [
-        {title: `${title} - ${name}`},
-    ]
+    return setMeta(title)
 }
 
 export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: boolean; status?: string }) {

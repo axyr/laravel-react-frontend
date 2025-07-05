@@ -13,15 +13,13 @@ import type { RegisterFields } from '~/routes/auth/types'
 import { LoaderCircle } from 'lucide-react'
 import { href, useNavigate } from 'react-router'
 import { useAuthStore } from '~/stores/auth-store'
+import { setMeta } from '~/lib/meta'
 
 const title = 'Create an account'
 const description = 'Enter your details below to create your account'
 
 export function meta({}: Route.MetaArgs) {
-    return [
-        {title},
-        {name: 'description', content: description},
-    ]
+    return setMeta(title, description)
 }
 
 export default function Register() {

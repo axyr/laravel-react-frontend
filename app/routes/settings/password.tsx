@@ -14,13 +14,21 @@ import { useRecentlySuccessful } from '~/hooks/use-recently-successful'
 import { settings } from '~/routes/settings/settings'
 import { handleValidationErrors } from '~/lib/handle-validation-errors'
 import { LoaderCircle } from 'lucide-react'
+import type { Route } from '../../../.react-router/types/app/routes/+types/home'
+import { setMeta } from '~/lib/meta'
+
+const title = 'Password settings'
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Password settings',
+        title: title,
         href: '/settings/password',
     },
 ];
+
+export function meta({}: Route.MetaArgs) {
+    return setMeta(title)
+}
 
 export default function Password() {
 

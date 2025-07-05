@@ -11,15 +11,13 @@ import InputError from '~/components/input-error'
 import TextLink from '~/components/text-link'
 import type { ForgotPasswordFields } from '~/routes/auth/types'
 import { LoaderCircle } from 'lucide-react'
+import { setMeta } from '~/lib/meta'
 
 const title = 'Forgot password'
 const description = 'Enter your email to receive a password reset link.'
 
 export function meta({}: Route.MetaArgs) {
-    return [
-        { title },
-        { name: 'description', content: description },
-    ]
+    return setMeta(title, description)
 }
 
 export default function ForgotPassword() {

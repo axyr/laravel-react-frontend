@@ -13,15 +13,13 @@ import { useQueryParam } from '~/hooks/use-query-param'
 import { href, useNavigate, useParams } from 'react-router'
 import { LoaderCircle } from 'lucide-react'
 import TextLink from '~/components/text-link'
+import { setMeta } from '~/lib/meta'
 
 const title = 'Reset password'
 const description = 'Please enter your new password below.'
 
 export function meta({}: Route.MetaArgs) {
-    return [
-        {title},
-        {name: 'description', content: description},
-    ]
+    return setMeta(title, description)
 }
 
 export default function ResetPassword() {

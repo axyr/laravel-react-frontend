@@ -1,14 +1,10 @@
 import { Button } from '~/components/ui/button'
 import type { Route } from './+types/home'
-import { useSharedStore } from '~/stores/shared-store'
 import { href, useNavigate } from 'react-router'
+import { setMeta } from '~/lib/meta'
 
 export function meta({}: Route.MetaArgs) {
-    const name = useSharedStore((s) => s.name)
-    return [
-        {title: name},
-        {name: 'description', content: 'Welcome to React Router!'},
-    ]
+    return setMeta('', 'Welcome to React Router!')
 }
 
 export default function Home() {
