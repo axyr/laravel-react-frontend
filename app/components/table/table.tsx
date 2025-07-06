@@ -27,7 +27,6 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { useDebounce } from "use-debounce"
 import type { BatchAction, TableProps, TableState, TableActions, Search } from '~/components/table/types'
 
-
 type SimplifiedTableProps<T> = Omit<
     TableProps<T>,
     | 'page'
@@ -132,7 +131,7 @@ export function DataTable<T>({
     const selectedRows = table.getSelectedRowModel().rows.map(row => row.original)
 
     return (
-        <div className="w-full">
+        <div className="w-full px-4">
             <div className="flex items-center py-4 gap-2">
                 {selectedRows.length > 0 && batchActions.length > 0 && (
                     <DropdownMenu>
