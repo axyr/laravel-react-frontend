@@ -9,7 +9,6 @@ import { Label } from '~/components/ui/label';
 import AppLayout from '~/layouts/app-layout';
 import SettingsLayout from '~/layouts/settings/layout';
 import { useAuthStore } from '~/stores/auth-store'
-import type { Route } from '../../../.react-router/types/app/routes/+types/home'
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router'
 import type { ProfileFields } from '~/routes/settings/types'
@@ -29,7 +28,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ]
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
     return setMeta(title)
 }
 

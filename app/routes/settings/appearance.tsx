@@ -1,10 +1,8 @@
 import AppearanceTabs from '~/components/appearance-tabs';
 import HeadingSmall from '~/components/heading-small';
 import { type BreadcrumbItem } from '~/types';
-
 import AppLayout from '~/layouts/app-layout';
 import SettingsLayout from '~/layouts/settings/layout';
-import type { Route } from '../../../.react-router/types/app/routes/+types/home'
 import { setMeta } from '~/lib/meta'
 
 const title = 'Appearance settings'
@@ -16,7 +14,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
     return setMeta(title)
 }
 

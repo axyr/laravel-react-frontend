@@ -1,7 +1,6 @@
 import AuthLayout from '~/layouts/auth-layout'
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import type { Route } from './+types/login'
 import { handleValidationErrors } from '~/lib/handle-validation-errors'
 import { auth } from './auth'
 import { useAuthStore } from '~/stores/auth-store'
@@ -19,7 +18,7 @@ import { setMeta } from '~/lib/meta'
 const title = 'Login to your account'
 const description = 'Enter your email below to login to your account.'
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
     return setMeta(title, description)
 }
 

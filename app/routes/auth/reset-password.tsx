@@ -1,7 +1,6 @@
 import AuthLayout from '~/layouts/auth-layout'
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import type { Route } from './+types/login'
 import { handleValidationErrors } from '~/lib/handle-validation-errors'
 import { auth } from './auth'
 import { Button } from '~/components/ui/button'
@@ -18,7 +17,7 @@ import { setMeta } from '~/lib/meta'
 const title = 'Reset password'
 const description = 'Please enter your new password below.'
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
     return setMeta(title, description)
 }
 

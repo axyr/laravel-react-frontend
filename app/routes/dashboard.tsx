@@ -1,6 +1,5 @@
 import type { BreadcrumbItem } from '~/types'
 import AppLayout from '~/layouts/app-layout'
-import type { Route } from '../../.react-router/types/app/routes/+types/home'
 import { PlaceholderPattern } from '~/components/ui/placeholder-pattern'
 import { setMeta } from '~/lib/meta'
 
@@ -13,7 +12,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ]
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
     return setMeta(title)
 }
 
