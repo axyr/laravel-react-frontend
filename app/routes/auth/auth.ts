@@ -1,7 +1,7 @@
-import { api } from '~/axios/axios';
-import { unwrapData, unwrapRoot } from '~/lib/utils'
+import { api } from '~/core/axios/axios';
+import { unwrapData, unwrapRoot } from '~/core/lib/utils'
 import { END_POINTS } from '~/config/end-points'
-import type { User } from '~/types';
+import type { User } from '~/core/types';
 import type {
     ForgotPasswordFields,
     LoginFields,

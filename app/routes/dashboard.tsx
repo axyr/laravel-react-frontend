@@ -1,7 +1,7 @@
-import type { BreadcrumbItem } from '~/types'
-import AppLayout from '~/layouts/app-layout'
+import type { BreadcrumbItem } from '~/core/types'
+import AppLayout from '~/core/layouts/app-layout'
 import { PlaceholderPattern } from '~/components/ui/placeholder-pattern'
-import { setMeta } from '~/lib/meta'
+import { setMeta } from '~/core/lib/meta'
 
 const title = 'Dashboard';
 

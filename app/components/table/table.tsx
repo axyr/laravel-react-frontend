@@ -27,6 +27,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { useDebounce } from "use-debounce"
 import type { BatchAction, TableProps, TableState, TableActions, Search } from '~/components/table/types'
 
+
 type SimplifiedTableProps<T> = Omit<
     TableProps<T>,
     | 'page'
@@ -191,6 +192,12 @@ export function DataTable<T>({
                             ))}
                     </DropdownMenuContent>
                 </DropdownMenu>
+
+                <Button variant="default" onClick={() => tableActions.onCreate?.()}>
+                    <span className="flex items-center gap-1">
+                        <span className="text-lg leading-none">+</span> Create
+                    </span>
+                </Button>
             </div>
 
             <div className="rounded-md border">

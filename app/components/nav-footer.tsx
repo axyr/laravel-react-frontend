@@ -1,6 +1,6 @@
 import { Icon } from '~/components/icon';
 import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '~/components/ui/sidebar';
-import { type NavItem } from '~/types';
+import { type NavItem } from '~/core/types';
 import { type ComponentPropsWithoutRef } from 'react';
 
 export function NavFooter({

@@ -1,6 +1,6 @@
 import { Button } from '~/components/ui/button'
 import { href, useNavigate } from 'react-router'
-import { setMeta } from '~/lib/meta'
+import { setMeta } from '~/core/lib/meta'
 
 export function meta() {
     return setMeta('', 'Welcome to React Router!')

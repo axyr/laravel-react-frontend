@@ -1,0 +1,82 @@
+import React from 'react'
+import { useNavigate } from 'react-router'
+import AppLayout from '~/core/layouts/app-layout'
+import { setMeta } from '~/core/lib/meta'
+import { delete{{Singular}}, get{{Plural}} } from '~/routes/{{plural}}/api'
+import { DataTable } from '~/components/table/table'
+import { useTableData } from '~/components/table/use-table-data'
+import { getColumns } from '~/routes/{{plural}}/table-columns'
+import { useDeleteResource } from '~/core/hooks/use-delete-resource'
+import { ConfirmDeleteDialog } from '~/components/confirm-delete-dialog'
+
+import type { {{Singular}} } from '~/routes/{{plural}}/types'
+import type { BreadcrumbItem } from '~/core/types'
+
+const title = '{{Plural}}'
+
+export function meta() {
+    return setMeta(title)
+}
+
+export default function {{Plural}}() {
+    const navigate = useNavigate()
+    const breadcrumbs: BreadcrumbItem[] = [{ title, href: '/{{plural}}' }]
+
+    const {
+        data,
+        setData,
+        totalCount,
+        tableState,
+        tableActions,
+    } = useTableData<{{Singular}}>(async (params) => {
+        const res = await get{{Plural}}(params)
+        return {
+            data: res.data.data,
+            total: res.data.meta.total,
+        }
+    })
+
+    const {
+        resourceToDelete,
+        confirmDelete,
+        cancelDelete,
+        handleConfirmedDelete,
+    } = useDeleteResource<{{Singular}}>(
+        delete{{Singular}},
+        setData,
+        '{{Singular}} deleted',
+        'Error deleting {{singular}}'
+    )
+
+    const handleEdit = ({{singular}}: {{Singular}}) => {
+        navigate(`/{{plural}}/{{dollarVar singular}}.id}`, { replace: true })
+    }
+
+    tableActions.onCreate = () => {
+        navigate('/{{plural}}/create')
+    }
+
+    const columns = getColumns({
+        onEdit: handleEdit,
+        onDelete: confirmDelete,
+    })
+
+    return (
+        <AppLayout breadcrumbs={breadcrumbs}>
+            <DataTable
+                data={data}
+                totalCount={totalCount}
+                columns={columns}
+                tableState={tableState}
+                tableActions={tableActions}
+            />
+
+            <ConfirmDeleteDialog
+                open={!!resourceToDelete}
+                itemLabel={resourceToDelete?.name}
+                onCancel={cancelDelete}
+                onConfirm={handleConfirmedDelete}
+            />
+        </AppLayout>
+    )
+}

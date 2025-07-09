@@ -1,10 +1,10 @@
 import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '~/components/ui/dropdown-menu'
 import { UserInfo } from '~/components/user-info'
-import { useMobileNavigation } from '~/hooks/use-mobile-navigation'
-import { type User } from '~/types'
+import { useMobileNavigation } from '~/core/hooks/use-mobile-navigation'
+import { type User } from '~/core/types'
 import { LogOut, Settings } from 'lucide-react'
 import { Link } from 'react-router'
-import { useLogout } from '~/hooks/use-auth'
+import { useLogout } from '~/core/hooks/use-auth'
 import React from 'react'
 
 interface UserMenuContentProps {

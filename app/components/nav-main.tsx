@@ -1,7 +1,7 @@
 "use client"
 
 import { useLocation, Link } from "react-router"
-import type { NavItem } from "~/types"
+import type { NavItem } from "~/core/types"
 
 import {
     SidebarGroup,

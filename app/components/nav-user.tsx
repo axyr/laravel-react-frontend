@@ -20,11 +20,11 @@ import {
 } from "~/components/ui/sidebar"
 
 import React from "react"
-import { useAuthStore } from "~/stores/auth-store"
-import { useLogout } from '~/hooks/use-auth'
+import { useAuthStore } from "~/core/stores/auth-store"
+import { useLogout } from '~/core/hooks/use-auth'
 import { UserInfo } from '~/components/user-info'
 import { UserMenuContent } from '~/components/user-menu-content'
-import { useIsMobile } from '~/hooks/use-mobile'
+import { useIsMobile } from '~/core/hooks/use-mobile'
 
 export function NavUser() {
   const { state } = useSidebar()

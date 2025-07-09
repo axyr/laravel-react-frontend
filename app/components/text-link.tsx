@@ -1,4 +1,4 @@
-import { cn } from "~/lib/utils"
+import { cn } from "~/core/lib/utils"
 import { Link } from 'react-router';
 import type { ComponentProps } from 'react';
 

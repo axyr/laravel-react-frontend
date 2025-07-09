@@ -1,5 +1,5 @@
 import AppLogoIcon from './app-logo-icon';
-import { useSharedStore } from "~/stores/shared-store"
+import { useSharedStore } from "~/core/stores/shared-store"
 
 export default function AppLogo() {
 

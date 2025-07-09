@@ -8,10 +8,10 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import { useForm } from 'react-hook-form'
 import { LoaderCircle } from 'lucide-react'
 import { auth } from '~/routes/auth/auth'
-import { handleValidationErrors } from '~/lib/handle-validation-errors'
+import { handleValidationErrors } from '~/core/lib/handle-validation-errors'
 import type { DeleteUserFields } from '~/routes/settings/types'
 import { settings } from '~/routes/settings/settings'
-import { useAuthStore } from '~/stores/auth-store'
+import { useAuthStore } from '~/core/stores/auth-store'
 import { useNavigate } from 'react-router'
 
 export default function DeleteUser() {

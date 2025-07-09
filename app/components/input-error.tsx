@@ -1,4 +1,4 @@
-import { cn } from "~/lib/utils"
+import { cn } from "~/core/lib/utils"
 import { type HTMLAttributes } from 'react'
 
 export default function InputError({ message, className = '', ...props }: HTMLAttributes<HTMLParagraphElement> & { message?: string }) {

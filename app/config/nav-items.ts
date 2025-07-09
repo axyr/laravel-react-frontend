@@ -1,5 +1,5 @@
-import { CirclePlay, LayoutGrid, SquareCode, Tractor } from 'lucide-react'
-import type { NavItem } from '~/types'
+import { CirclePlay, LayoutGrid, SquareCode, Tractor, User } from 'lucide-react'
+import type { NavItem } from '~/core/types'
 
 export const mainNavItems: NavItem[] = [
     {
@@ -7,7 +7,12 @@ export const mainNavItems: NavItem[] = [
         to: '/dashboard',
         icon: LayoutGrid,
     },
-];
+    {
+        title: 'Users',
+        to: '/users',
+        icon: User,
+    },
+]
 
 export const footerNavItems: NavItem[] = [
     {
@@ -16,13 +21,13 @@ export const footerNavItems: NavItem[] = [
         icon: SquareCode,
     },
     {
-        title: 'Laravel Starter Kit',
-        to: 'https://github.com/axyr/laravel-react-starter-kit',
-        icon: CirclePlay,
-    },
-    {
         title: 'Laravel Tractor',
         to: 'https://github.com/axyr/laravel-tractor',
         icon: Tractor,
+    },
+    {
+        title: 'Laravel Starter Kit',
+        to: 'https://github.com/axyr/laravel-react-starter-kit',
+        icon: CirclePlay,
     },
 ]

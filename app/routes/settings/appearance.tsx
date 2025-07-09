@@ -1,9 +1,9 @@
 import AppearanceTabs from '~/components/appearance-tabs';
 import HeadingSmall from '~/components/heading-small';
-import { type BreadcrumbItem } from '~/types';
-import AppLayout from '~/layouts/app-layout';
-import SettingsLayout from '~/layouts/settings/layout';
-import { setMeta } from '~/lib/meta'
+import { type BreadcrumbItem } from '~/core/types';
+import AppLayout from '~/core/layouts/app-layout';
+import SettingsLayout from '~/core/layouts/settings/layout';
+import { setMeta } from '~/core/lib/meta'
 
 const title = 'Appearance settings'
 

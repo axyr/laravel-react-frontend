@@ -10,7 +10,7 @@ import {
   SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
   SidebarRail,
 } from "~/components/ui/sidebar"
-import type { NavItem } from "~/types";
+import type { NavItem } from "~/core/types";
 import { Link } from "react-router";
 import AppLogo from "~/components/app-logo";
 import { NavFooter } from '~/components/nav-footer'

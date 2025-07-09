@@ -7,14 +7,14 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuT
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '~/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
 import { UserMenuContent } from '~/components/user-menu-content';
-import { useInitials } from '~/hooks/use-initials';
-import { cn } from '~/lib/utils';
-import { type BreadcrumbItem } from '~/types';
+import { useInitials } from '~/core/hooks/use-initials';
+import { cn } from '~/core/lib/utils';
+import { type BreadcrumbItem } from '~/core/types';
 import { Menu, Search } from 'lucide-react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
 import { Link, useLocation } from "react-router";
-import { useAuthStore } from "~/stores/auth-store";
+import { useAuthStore } from "~/core/stores/auth-store";
 import { mainNavItems, footerNavItems as rightNavItems } from '~/config/nav-items'
 
 const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';

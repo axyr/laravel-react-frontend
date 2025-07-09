@@ -1,5 +1,5 @@
 import { SidebarProvider } from '~/components/ui/sidebar';
-import { useSharedStore } from "~/stores/shared-store"
+import { useSharedStore } from "~/core/stores/shared-store"
 
 interface AppShellProps {
     children: React.ReactNode;

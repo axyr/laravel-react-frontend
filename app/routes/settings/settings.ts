@@ -1,5 +1,5 @@
-import { api } from '~/axios/axios'
-import { unwrapData, unwrapRoot } from '~/lib/utils'
+import { api } from '~/core/axios/axios'
+import { unwrapData, unwrapRoot } from '~/core/lib/utils'
 import { END_POINTS } from '~/config/end-points'
 import type { LoginResponse, MessageResponse } from '~/routes/auth/types'
 import type { DeleteUserFields, ProfileFields, UpdatePasswordFields } from './types'

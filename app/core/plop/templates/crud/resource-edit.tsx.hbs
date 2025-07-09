@@ -1,0 +1,53 @@
+import { useParams } from 'react-router'
+import AppLayout from '~/core/layouts/app-layout'
+import { setMeta } from '~/core/lib/meta'
+import { get{{Singular}}, update{{Singular}} } from './api'
+import { useResourceForm } from '~/core/hooks/use-resource-form'
+import InputField from '~/components/forms/input-field'
+import FormActions from '~/components/forms/form-actions'
+import type { BreadcrumbItem } from '~/core/types'
+import type { {{Singular}} } from './types'
+
+const title = 'Edit {{Singular}}'
+
+export function meta() {
+    return setMeta(title)
+}
+
+export default function {{Singular}}Page() {
+    const { id = '' } = useParams<{ id: string }>()
+
+    const { form, onSubmit, recentlySuccessful, isSubmitting } = useResourceForm<{{Singular}}>({
+        id,
+        fetch: get{{Singular}},
+        update: update{{Singular}},
+    })
+
+    const { register, formState: { errors } } = form
+
+    const breadcrumbs: BreadcrumbItem[] = [
+        { title: '{{Plural}}', href: '/{{plural}}' },
+        { title, href: `/{{plural}}/${id}` },
+    ]
+
+    return (
+        <AppLayout breadcrumbs={breadcrumbs}>
+            <form onSubmit={onSubmit} className="max-w-lg p-4 space-y-6">
+                <InputField
+                    id="name"
+                    label="Name"
+                    autoComplete="name"
+                    disabled={isSubmitting}
+                    register={register('name')}
+                    error={errors.name}
+                />
+
+                <FormActions
+                    backTo="/{{plural}}"
+                    isSubmitting={isSubmitting}
+                    recentlySuccessful={recentlySuccessful}
+                />
+            </form>
+        </AppLayout>
+    )
+}

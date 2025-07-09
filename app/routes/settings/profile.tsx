@@ -1,4 +1,4 @@
-import { type BreadcrumbItem, type User } from '~/types'
+import { type BreadcrumbItem, type User } from '~/core/types'
 import { Transition } from '@headlessui/react';
 import React from 'react';
 import HeadingSmall from '~/components/heading-small';
@@ -6,18 +6,18 @@ import InputError from '~/components/input-error';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
-import AppLayout from '~/layouts/app-layout';
-import SettingsLayout from '~/layouts/settings/layout';
-import { useAuthStore } from '~/stores/auth-store'
+import AppLayout from '~/core/layouts/app-layout';
+import SettingsLayout from '~/core/layouts/settings/layout';
+import { useAuthStore } from '~/core/stores/auth-store'
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router'
 import type { ProfileFields } from '~/routes/settings/types'
-import { handleValidationErrors } from '~/lib/handle-validation-errors'
+import { handleValidationErrors } from '~/core/lib/handle-validation-errors'
 import { settings } from '~/routes/settings/settings'
-import { useRecentlySuccessful } from '~/hooks/use-recently-successful'
+import { useRecentlySuccessful } from '~/core/hooks/use-recently-successful'
 import { LoaderCircle } from 'lucide-react'
 import DeleteUser from '~/components/delete-user'
-import { setMeta } from '~/lib/meta'
+import { setMeta } from '~/core/lib/meta'
 
 const title = 'Profile settings';
 

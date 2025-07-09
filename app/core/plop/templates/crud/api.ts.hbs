@@ -1,0 +1,21 @@
+import type { {{Singular}} } from './types'
+import { unwrapData } from '~/core/lib/utils'
+import { api } from '~/core/axios/axios'
+import type { TableQueryParams } from '~/components/table/types'
+import { buildQueryParams } from '~/components/table/query-params'
+
+export function get{{Plural}}(params: TableQueryParams) {
+    return api.get('/{{plural}}', { params: buildQueryParams(params) })
+}
+
+export const get{{Singular}} = (id: number | string): Promise<{{Singular}}> =>
+    unwrapData<{{Singular}}>(api.get<{ data: {{Singular}} }>(`{{plural}}/${id}`))
+
+export const create{{Singular}} = (payload: {{Singular}}): Promise<{{Singular}}> =>
+    unwrapData<{{Singular}}>(api.post<{ data: {{Singular}} }>('{{plural}}', payload))
+
+export const update{{Singular}} = (id: number | string, payload: {{Singular}}): Promise<{{Singular}}> =>
+    unwrapData<{{Singular}}>(api.put<{ data: {{Singular}} }>(`{{plural}}/${id}`, payload))
+
+export const delete{{Singular}} = (id: number | string): Promise<{{Singular}}> =>
+    unwrapData<{{Singular}}>(api.delete<{ data: {{Singular}} }>(`{{plural}}/${id}`))

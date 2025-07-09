@@ -27,6 +27,7 @@ export type TableActions = {
     onPerPageChange: (perPage: number) => void
     onSortChange: (sort: Sort | null) => void
     onSearchChange: (search: Search) => void
+    onCreate?: () => void
 }
 
 export type BatchAction<T> = {
