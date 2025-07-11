@@ -3,6 +3,8 @@ const pluralize = require('pluralize')
 module.exports = function (plop) {
 
     plop.setHelper('dollarVar', function (varName) {
+        // This is a bit ugly, but allows to add variables in templates.
+        // Could not find another way to play nice with handlebars.
         return '${' + varName
     })
 

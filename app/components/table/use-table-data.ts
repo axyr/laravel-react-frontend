@@ -12,7 +12,7 @@ export function useTableData<T>(
     initialPerPage = 15
 ): {
     data: T[]
-    setData: React.Dispatch<React.SetStateAction<T[]>> // ✅ added
+    setData: React.Dispatch<React.SetStateAction<T[]>>
     totalCount: number
     tableState: TableState
     tableActions: TableActions
@@ -61,7 +61,7 @@ export function useTableData<T>(
 
     return {
         data,
-        setData, // ✅ added here
+        setData,
         totalCount,
         tableState: { page, perPage, sort, search },
         tableActions: {
