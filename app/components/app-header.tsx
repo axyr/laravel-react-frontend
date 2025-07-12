@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '~/co
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
 import { UserMenuContent } from '~/components/user-menu-content';
 import { useInitials } from '~/core/hooks/use-initials';
-import { cn } from '~/core/lib/utils';
+import { cn } from "~/lib/utils"
 import { type BreadcrumbItem } from '~/core/types';
 import { Menu, Search } from 'lucide-react';
 import AppLogo from './app-logo';

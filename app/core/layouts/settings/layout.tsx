@@ -1,7 +1,7 @@
 import Heading from '~/components/heading';
 import { Button } from '~/components/ui/button';
 import { Separator } from '~/components/ui/separator';
-import { cn } from '~/core/lib/utils';
+import { cn } from "~/lib/utils"
 import { type NavItem } from '~/core/types';
 import { type PropsWithChildren } from 'react';
 import { Link } from 'react-router'
