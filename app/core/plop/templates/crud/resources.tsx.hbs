@@ -11,6 +11,8 @@ import { ConfirmDeleteDialog } from '~/components/confirm-delete-dialog'
 
 import type { {{pascalSingular}} } from '~/routes/{{kebabPlural}}/types'
 import type { BreadcrumbItem } from '~/core/types'
+import { EmptyPlaceholder } from '~/components/empty-placeholder'
+import { FileText } from 'lucide-react'
 
 const title = '{{titlePlural}}'
 
@@ -63,13 +65,23 @@ export default function {{pascalPlural}}() {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
+            {data.length === 0 ? (
+                <EmptyPlaceholder
+                        title="No {{titlePlural}} Found"
+                        description="Create the first {{titleSingular}} to get started"
+                        icon={FileText}
+                        actionLabel="Create {{titleSingular}}"
+                        onAction={() => navigate('/{{kebabPlural}}/create')}
+                />
+            ) : (
             <DataTable
-                data={data}
-                totalCount={totalCount}
-                columns={columns}
-                tableState={tableState}
-                tableActions={tableActions}
+                    data={data}
+                    totalCount={totalCount}
+                    columns={columns}
+                    tableState={tableState}
+                    tableActions={tableActions}
             />
+            )}
 
             <ConfirmDeleteDialog
                 open={!!resourceToDelete}
