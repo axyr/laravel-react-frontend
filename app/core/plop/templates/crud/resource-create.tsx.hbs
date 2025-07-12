@@ -1,34 +1,34 @@
 import AppLayout from '~/core/layouts/app-layout'
 import { setMeta } from '~/core/lib/meta'
-import { create{{Singular}} } from './api'
+import { create{{pascalSingular}} } from './api'
 import { useResourceForm } from '~/core/hooks/use-resource-form'
 import InputField from '~/components/forms/input-field'
 import FormActions from '~/components/forms/form-actions'
 import type { BreadcrumbItem } from '~/core/types'
-import type { {{Singular}} } from './types'
+import type { {{pascalSingular}} } from './types'
 import { useNavigate } from 'react-router'
 
-const title = 'Create {{Singular}}'
+const title = 'Create {{titleSingular}}'
 
 export function meta() {
     return setMeta(title)
 }
 
-export default function {{Singular}}CreatePage() {
+export default function {{pascalSingular}}CreatePage() {
     const navigate = useNavigate()
 
-    const { form, onSubmit, recentlySuccessful, isSubmitting } = useResourceForm<{{Singular}}>({
-        create: create{{Singular}},
-        onSuccess: ({{singular}}) => {
-            navigate(`/{{plural}}/{{dollarVar singular}}.id}`, { replace: true })
+    const { form, onSubmit, recentlySuccessful, isSubmitting } = useResourceForm<{{pascalSingular}}>({
+        create: create{{pascalSingular}},
+        onSuccess: ({{camelSingular}}) => {
+            navigate(`/{{kebabPlural}}/{{dollarVar camelSingular}}.id}`, { replace: true })
         }
     })
 
     const { register, formState: { errors } } = form
 
     const breadcrumbs: BreadcrumbItem[] = [
-        { title: '{{Plural}}', href: '/{{plural}}' },
-        { title: title, href: '/{{plural}}/create' },
+        { title: '{{titlePlural}}', href: '/{{kebabPlural}}' },
+        { title: title, href: '/{{kebabPlural}}/create' },
     ]
 
     return (
@@ -44,7 +44,7 @@ export default function {{Singular}}CreatePage() {
                />
 
                <FormActions
-                   backTo="/{{plural}}"
+                   backTo="/{{kebabPlural}}"
                    isSubmitting={isSubmitting}
                    recentlySuccessful={recentlySuccessful}
                />

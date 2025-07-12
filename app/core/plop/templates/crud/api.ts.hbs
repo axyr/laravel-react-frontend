@@ -1,21 +1,21 @@
-import type { {{Singular}} } from './types'
+import type { {{pascalSingular}} } from './types'
 import { unwrapData } from '~/core/lib/utils'
 import { api } from '~/core/axios/axios'
 import type { TableQueryParams } from '~/components/table/types'
 import { buildQueryParams } from '~/components/table/query-params'
 
-export function get{{Plural}}(params: TableQueryParams) {
-    return api.get('/{{plural}}', { params: buildQueryParams(params) })
+export function get{{pascalPlural}}(params: TableQueryParams) {
+    return api.get('/{{kebabPlural}}', { params: buildQueryParams(params) })
 }
 
-export const get{{Singular}} = (id: number | string): Promise<{{Singular}}> =>
-    unwrapData<{{Singular}}>(api.get<{ data: {{Singular}} }>(`{{plural}}/${id}`))
+export const get{{pascalSingular}} = (id: number | string): Promise<{{pascalSingular}}> =>
+    unwrapData<{{pascalSingular}}>(api.get<{ data: {{pascalSingular}} }>(`{{kebabPlural}}/${id}`))
 
-export const create{{Singular}} = (payload: {{Singular}}): Promise<{{Singular}}> =>
-    unwrapData<{{Singular}}>(api.post<{ data: {{Singular}} }>('{{plural}}', payload))
+export const create{{pascalSingular}} = (payload: {{pascalSingular}}): Promise<{{pascalSingular}}> =>
+    unwrapData<{{pascalSingular}}>(api.post<{ data: {{pascalSingular}} }>('{{kebabPlural}}', payload))
 
-export const update{{Singular}} = (id: number | string, payload: {{Singular}}): Promise<{{Singular}}> =>
-    unwrapData<{{Singular}}>(api.put<{ data: {{Singular}} }>(`{{plural}}/${id}`, payload))
+export const update{{pascalSingular}} = (id: number | string, payload: {{pascalSingular}}): Promise<{{pascalSingular}}> =>
+    unwrapData<{{pascalSingular}}>(api.put<{ data: {{pascalSingular}} }>(`{{kebabPlural}}/${id}`, payload))
 
-export const delete{{Singular}} = (id: number | string): Promise<{{Singular}}> =>
-    unwrapData<{{Singular}}>(api.delete<{ data: {{Singular}} }>(`{{plural}}/${id}`))
+export const delete{{pascalSingular}} = (id: number | string): Promise<{{pascalSingular}}> =>
+    unwrapData<{{pascalSingular}}>(api.delete<{ data: {{pascalSingular}} }>(`{{kebabPlural}}/${id}`))

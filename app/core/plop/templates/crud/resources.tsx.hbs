@@ -2,25 +2,25 @@ import React from 'react'
 import { useNavigate } from 'react-router'
 import AppLayout from '~/core/layouts/app-layout'
 import { setMeta } from '~/core/lib/meta'
-import { delete{{Singular}}, get{{Plural}} } from '~/routes/{{plural}}/api'
+import { delete{{pascalSingular}}, get{{pascalPlural}} } from '~/routes/{{kebabPlural}}/api'
 import { DataTable } from '~/components/table/table'
 import { useTableData } from '~/components/table/use-table-data'
-import { getColumns } from '~/routes/{{plural}}/table-columns'
+import { getColumns } from '~/routes/{{kebabPlural}}/table-columns'
 import { useDeleteResource } from '~/core/hooks/use-delete-resource'
 import { ConfirmDeleteDialog } from '~/components/confirm-delete-dialog'
 
-import type { {{Singular}} } from '~/routes/{{plural}}/types'
+import type { {{pascalSingular}} } from '~/routes/{{kebabPlural}}/types'
 import type { BreadcrumbItem } from '~/core/types'
 
-const title = '{{Plural}}'
+const title = '{{titlePlural}}'
 
 export function meta() {
     return setMeta(title)
 }
 
-export default function {{Plural}}() {
+export default function {{pascalPlural}}() {
     const navigate = useNavigate()
-    const breadcrumbs: BreadcrumbItem[] = [{ title, href: '/{{plural}}' }]
+    const breadcrumbs: BreadcrumbItem[] = [{ title, href: '/{{kebabPlural}}' }]
 
     const {
         data,
@@ -28,8 +28,8 @@ export default function {{Plural}}() {
         totalCount,
         tableState,
         tableActions,
-    } = useTableData<{{Singular}}>(async (params) => {
-        const res = await get{{Plural}}(params)
+    } = useTableData<{{pascalSingular}}>(async (params) => {
+        const res = await get{{pascalPlural}}(params)
         return {
             data: res.data.data,
             total: res.data.meta.total,
@@ -41,19 +41,19 @@ export default function {{Plural}}() {
         confirmDelete,
         cancelDelete,
         handleConfirmedDelete,
-    } = useDeleteResource<{{Singular}}>(
-        delete{{Singular}},
+    } = useDeleteResource<{{pascalSingular}}>(
+        delete{{pascalSingular}},
         setData,
-        '{{Singular}} deleted',
-        'Error deleting {{singular}}'
+        '{{pascalSingular}} deleted',
+        'Error deleting {{titleSingular}}'
     )
 
-    const handleEdit = ({{singular}}: {{Singular}}) => {
-        navigate(`/{{plural}}/{{dollarVar singular}}.id}`, { replace: true })
+    const handleEdit = ({{camelSingular}}: {{pascalSingular}}) => {
+        navigate(`/{{kebabPlural}}/{{dollarVar camelSingular}}.id}`, { replace: true })
     }
 
     tableActions.onCreate = () => {
-        navigate('/{{plural}}/create')
+        navigate('/{{kebabPlural}}/create')
     }
 
     const columns = getColumns({

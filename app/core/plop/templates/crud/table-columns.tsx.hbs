@@ -1,42 +1,42 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import type { {{Singular}} } from './types'
+import type { {{pascalSingular}} } from './types'
 import { col, actionsCol } from '~/components/table/columns'
 
 type ColumnCallbacks = {
-    onEdit: ({{singular}}: {{Singular}}) => void
-    onDelete: ({{singular}}: {{Singular}}) => void
+    onEdit: ({{camelSingular}}: {{pascalSingular}}) => void
+    onDelete: ({{camelSingular}}: {{pascalSingular}}) => void
 }
 
-export function getColumns({ onEdit, onDelete }: ColumnCallbacks): ColumnDef<{{Singular}}>[] {
+export function getColumns({ onEdit, onDelete }: ColumnCallbacks): ColumnDef<{{pascalSingular}}>[] {
     return [
 
-        col<{{Singular}}>('id', {
+        col<{{pascalSingular}}>('id', {
             label: '#',
             sortable: true,
             format: (val) => val,
         }),
 
-        col<{{Singular}}>('name', {
+        col<{{pascalSingular}}>('name', {
             label: 'Name',
             sortable: true,
             format: (val) => val,
         }),
 
-        col<{{Singular}}>('created_at', {
+        col<{{pascalSingular}}>('created_at', {
             label: 'Created at',
             align: 'right',
             format: (val) => (val ? new Date(val).toLocaleDateString() : '-'),
         }),
 
-        col<{{Singular}}>('updated_at', {
+        col<{{pascalSingular}}>('updated_at', {
             label: 'Updated at',
             align: 'right',
             format: (val) => (val ? new Date(val).toLocaleDateString() : '-'),
         }),
 
-        actionsCol<{{Singular}}>({{singular}} => [
-            { label: 'Edit', onClick: () => onEdit({{singular}}) },
-            { label: 'Delete', onClick: () => onDelete({{singular}}) },
+        actionsCol<{{pascalSingular}}>({{camelSingular}} => [
+            { label: 'Edit', onClick: () => onEdit({{camelSingular}}) },
+            { label: 'Delete', onClick: () => onDelete({{camelSingular}}) },
         ]),
     ]
 }

@@ -24,13 +24,18 @@ module.exports = function (plop) {
             const camelSingular = toCamelCase(pascalSingular)
             const camelPlural = pluralize(camelSingular)
 
+            const titleSingular = humanize(pascalSingular)
+            const titlePlural = humanize(pascalPlural)
+
             const data = {
-                singular: kebabSingular,
-                plural: kebabPlural,
-                Singular: pascalSingular,
-                Plural: pascalPlural,
+                kebabSingular,
+                kebabPlural,
+                pascalSingular,
+                pascalPlural,
                 camelSingular,
-                camelPlural
+                camelPlural,
+                titleSingular,
+                titlePlural,
             }
 
             return [
@@ -81,8 +86,8 @@ module.exports = function (plop) {
                     path: 'app/config/nav-items.ts',
                     pattern: /(export const mainNavItems: NavItem\[\] = \[[\s\S]*?)(\n\s*])/,
                     template: `$1\n    {
-        title: '{{Plural}}',
-        to: '/{{plural}}',
+        title: '{{titlePlural}}',
+        to: '/{{kebabPlural}}',
         icon: LayoutGrid,
     },$2`,
                     data,
@@ -91,7 +96,7 @@ module.exports = function (plop) {
                     type: 'modify',
                     path: 'app/routes.ts',
                     pattern: /(\n)(?=export default)/,
-                    template: `\nimport { {{camelSingular}}Routes } from './routes/{{plural}}/routes'$1`,
+                    template: `\nimport { {{camelSingular}}Routes } from './routes/{{kebabPlural}}/routes'$1`,
                     data,
                 },
                 {
@@ -121,4 +126,8 @@ function toKebabCase(str) {
 function toCamelCase(str) {
     const s = str.replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ''))
     return s.charAt(0).toLowerCase() + s.slice(1)
+}
+
+function humanize(str) {
+    return str.replace(/([a-z])([A-Z])/g, '$1 $2')
 }

@@ -1,33 +1,33 @@
 import { useParams } from 'react-router'
 import AppLayout from '~/core/layouts/app-layout'
 import { setMeta } from '~/core/lib/meta'
-import { get{{Singular}}, update{{Singular}} } from './api'
+import { get{{pascalSingular}}, update{{pascalSingular}} } from './api'
 import { useResourceForm } from '~/core/hooks/use-resource-form'
 import InputField from '~/components/forms/input-field'
 import FormActions from '~/components/forms/form-actions'
 import type { BreadcrumbItem } from '~/core/types'
-import type { {{Singular}} } from './types'
+import type { {{pascalSingular}} } from './types'
 
-const title = 'Edit {{Singular}}'
+const title = 'Edit {{titleSingular}}'
 
 export function meta() {
     return setMeta(title)
 }
 
-export default function {{Singular}}Page() {
+export default function {{pascalSingular}}Page() {
     const { id = '' } = useParams<{ id: string }>()
 
-    const { form, onSubmit, recentlySuccessful, isSubmitting } = useResourceForm<{{Singular}}>({
+    const { form, onSubmit, recentlySuccessful, isSubmitting } = useResourceForm<{{pascalSingular}}>({
         id,
-        fetch: get{{Singular}},
-        update: update{{Singular}},
+        fetch: get{{pascalSingular}},
+        update: update{{pascalSingular}},
     })
 
     const { register, formState: { errors } } = form
 
     const breadcrumbs: BreadcrumbItem[] = [
-        { title: '{{Plural}}', href: '/{{plural}}' },
-        { title, href: `/{{plural}}/${id}` },
+        { title: '{{titlePlural}}', href: '/{{kebabPlural}}' },
+        { title, href: `/{{kebabPlural}}/${id}` },
     ]
 
     return (
@@ -43,7 +43,7 @@ export default function {{Singular}}Page() {
                 />
 
                 <FormActions
-                    backTo="/{{plural}}"
+                    backTo="/{{kebabPlural}}"
                     isSubmitting={isSubmitting}
                     recentlySuccessful={recentlySuccessful}
                 />
