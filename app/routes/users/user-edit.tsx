@@ -34,7 +34,7 @@ export default function UserPage() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <form onSubmit={onSubmit} className="max-w-lg p-4 space-y-6">
                 <InputField
-                    id="name"
+                    name="name"
                     label="Name"
                     autoComplete="name"
                     disabled={isSubmitting}
@@ -43,7 +43,7 @@ export default function UserPage() {
                 />
 
                 <InputField
-                    id="email"
+                    name="email"
                     label="Email"
                     type="email"
                     autoComplete="email"

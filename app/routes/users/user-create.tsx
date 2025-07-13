@@ -36,7 +36,7 @@ export default function UserCreatePage() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <form onSubmit={onSubmit} className="max-w-lg p-4 space-y-6">
                 <InputField
-                    id="name"
+                    name="name"
                     label="Name"
                     autoComplete="name"
                     disabled={isSubmitting}
@@ -45,7 +45,7 @@ export default function UserCreatePage() {
                 />
 
                 <InputField
-                    id="email"
+                    name="email"
                     label="Email"
                     type="email"
                     autoComplete="email"
@@ -55,7 +55,7 @@ export default function UserCreatePage() {
                 />
 
                 <InputField
-                    id="password"
+                    name="password"
                     type="password"
                     label="Password"
                     autoComplete="new-password"
@@ -65,7 +65,7 @@ export default function UserCreatePage() {
                 />
 
                 <InputField
-                    id="password_confirmation"
+                    name="password_confirmation"
                     type="password"
                     label="Confirm password"
                     autoComplete="new-password"

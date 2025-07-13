@@ -4,7 +4,7 @@ import InputError from '~/components/input-error'
 import type { FieldError } from 'react-hook-form'
 
 type InputFieldProps = {
-    id: string
+    name: string
     label: string
     type?: string
     placeholder?: string
@@ -17,7 +17,7 @@ type InputFieldProps = {
 }
 
 export default function InputField({
-    id,
+    name,
     label,
     type = 'text',
     placeholder,
@@ -30,9 +30,9 @@ export default function InputField({
 }: InputFieldProps) {
     return (
         <div className={`grid gap-2 ${className}`}>
-            <Label htmlFor={id}>{label}</Label>
+            <Label htmlFor={name}>{label}</Label>
             <Input
-                id={id}
+                id={name}
                 type={type}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
